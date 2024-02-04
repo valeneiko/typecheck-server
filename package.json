@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "tsserver --disableAutomaticTypingAcquisition --suppressDiagnosticEvents"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
