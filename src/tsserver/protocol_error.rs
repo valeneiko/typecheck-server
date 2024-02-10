@@ -5,6 +5,7 @@ pub enum ProtocolError {
   StrUtf8(std::str::Utf8Error),
   StringUtf8(std::string::FromUtf8Error),
   ParseInt(std::num::ParseIntError),
+  SerdeJson(serde_json::Error),
 }
 
 impl std::fmt::Display for ProtocolError {
@@ -15,6 +16,7 @@ impl std::fmt::Display for ProtocolError {
       ProtocolError::StrUtf8(err) => err.fmt(f),
       ProtocolError::StringUtf8(err) => err.fmt(f),
       ProtocolError::ParseInt(err) => err.fmt(f),
+      ProtocolError::SerdeJson(err) => err.fmt(f),
     }
   }
 }
@@ -27,6 +29,7 @@ impl std::error::Error for ProtocolError {
       ProtocolError::StrUtf8(err) => Some(err),
       ProtocolError::StringUtf8(err) => Some(err),
       ProtocolError::ParseInt(err) => Some(err),
+      ProtocolError::SerdeJson(err) => Some(err),
     }
   }
 
@@ -56,5 +59,11 @@ impl From<std::string::FromUtf8Error> for ProtocolError {
 impl From<std::num::ParseIntError> for ProtocolError {
   fn from(value: std::num::ParseIntError) -> Self {
     Self::ParseInt(value)
+  }
+}
+
+impl From<serde_json::Error> for ProtocolError {
+  fn from(value: serde_json::Error) -> Self {
+    Self::SerdeJson(value)
   }
 }

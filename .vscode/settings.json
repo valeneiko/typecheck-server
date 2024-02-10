@@ -1,0 +1,29 @@
+{
+  "files.exclude": {
+    "**/*.js.map": true
+  },
+  "files.watcherExclude": {
+    "node_modules": true,
+    "target": true,
+    "dist": true,
+    "**/*.js.map": true
+  },
+  "search.exclude": {
+    "node_modules": true,
+    "target": true,
+    "dist": true,
+    "**/*.js.map": true,
+    "**/pnpm-lock.yaml": true
+  },
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "cSpell.words": ["typecheck", "biomejs"]
+}

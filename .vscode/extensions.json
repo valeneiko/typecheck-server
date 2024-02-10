@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "rust-lang.rust-analyzer",
+    "tamasfe.even-better-toml",
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "webfreak.debug",
+    "vadimcn.vscode-lldb",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

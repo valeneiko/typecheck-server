@@ -1,8 +1,35 @@
 {
+  "name": "typecheck-server",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/valeneiko/typecheck-server#readme",
+  "bugs": "https://github.com/valeneiko/typecheck-server/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valeneiko/typecheck-server.git"
+  },
+  "bin": "./dist/server.js",
+  "files": ["./dist"],
   "scripts": {
-    "start": "tsserver --disableAutomaticTypingAcquisition --suppressDiagnosticEvents"
+    "start": "node ./dist/server.js",
+    "build": "swc --delete-dir-on-start --copy-files --out-dir dist --strip-leading-paths ./src_js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "ts-api-utils": "^1.2.1",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "typescript": "^5.3.3"
-  }
+    "@biomejs/biome": "^1.5.3",
+    "@swc/cli": "^0.3.9",
+    "@swc/core": "^1.4.0",
+    "@types/node": "^20.11.17"
+  },
+  "packageManager": "pnpm@8.15.1",
+  "engines": {
+    "node": ">=20"
+  },
+  "os": ["darwin", "win32", "linux"]
 }
