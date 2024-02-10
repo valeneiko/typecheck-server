@@ -1,3 +1,5 @@
+// Source: https://github.com/microsoft/TypeScript/blob/25a708cf633c6c8a66c86ca9e664c31bd8d145d0/src/compiler/core.ts#L1651-L1690
+
 export class Queue<T> {
   readonly #elements: (T | undefined)[] = [];
   #headIndex: number = 0;

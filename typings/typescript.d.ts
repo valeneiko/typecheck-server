@@ -1,3 +1,5 @@
+// Source: https://github.com/typescript-eslint/typescript-eslint/blob/5a1e85da65cb83bc4e02965f8eb8f1f51347e004/packages/eslint-plugin/typings/typescript.d.ts
+
 import 'typescript';
 
 declare module 'typescript' {

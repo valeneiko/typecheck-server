@@ -1,3 +1,5 @@
+// Source: https://github.com/typescript-eslint/typescript-eslint/blob/a41ad155b5fee9177651439adb1c5131e7e6254f/packages/eslint-plugin/src/rules/no-floating-promises.ts
+
 import * as tsutils from 'ts-api-utils';
 import type * as ts from 'typescript';
 

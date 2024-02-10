@@ -1,3 +1,5 @@
+// Closely mimics tsserver: https://github.com/microsoft/TypeScript/blob/e2bf8b437d063392264ef20c55076cf0922ea2b6/src/server/session.ts#L3631
+
 import { createInterface } from 'node:readline';
 import { EOL } from 'node:os';
 import type { Message, Request, Response, Event } from './protocol.js';
@@ -80,7 +82,7 @@ function doOutput(
   send(res);
 }
 
-function event(eventName: string, body: {}): void {
+function emitEvent(eventName: string, body: {}): void {
   const event: Event = {
     seq: 0,
     type: 'event',
