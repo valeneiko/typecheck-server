@@ -23,13 +23,6 @@ impl<W: std::io::Write, R: std::io::Read> TSServerClient<W, R> {
     Ok(())
   }
 
-  pub fn configure(&mut self, opts: ConfigureRequest) -> Result<String, ProtocolError> {
-    let args = serde_json::to_string(&opts)?;
-    self.send_command("configure", Some(args.as_str()))?;
-    let response = read_message(&mut self.result_stream)?;
-    Ok(response)
-  }
-
   pub fn open(&mut self, opts: OpenRequest<'_>) -> Result<(), ProtocolError> {
     let args = serde_json::to_string(&opts)?;
     self.send_command("open", Some(args.as_str()))?;
@@ -40,6 +33,30 @@ impl<W: std::io::Write, R: std::io::Read> TSServerClient<W, R> {
     let args = serde_json::to_string(&opts)?;
     self.send_command("close", Some(args.as_str()))?;
     Ok(())
+  }
+
+  pub fn get_node(&mut self, opts: NodeRequest<'_>) -> Result<String, ProtocolError> {
+    let args = serde_json::to_string(&opts)?;
+    self.send_command("getNode", Some(args.as_str()))?;
+
+    let response = read_message(&mut self.result_stream)?;
+    Ok(response)
+  }
+
+  pub fn is_promise_array(&mut self, opts: LocationRequest<'_>) -> Result<String, ProtocolError> {
+    let args = serde_json::to_string(&opts)?;
+    self.send_command("noFloatingPromises::isPromiseArray", Some(args.as_str()))?;
+
+    let response = read_message(&mut self.result_stream)?;
+    Ok(response)
+  }
+
+  pub fn is_promise_like(&mut self, opts: LocationRequest<'_>) -> Result<String, ProtocolError> {
+    let args = serde_json::to_string(&opts)?;
+    self.send_command("noFloatingPromises::isPromiseLike", Some(args.as_str()))?;
+
+    let response = read_message(&mut self.result_stream)?;
+    Ok(response)
   }
 
   fn send_command(&mut self, command: &str, args: Option<&str>) -> Result<(), std::io::Error> {

@@ -15,5 +15,6 @@
     "type": "es6",
     "strict": true,
     "noInterop": true
-  }
+  },
+  "exclude": ["src_js/sample.ts"]
 }

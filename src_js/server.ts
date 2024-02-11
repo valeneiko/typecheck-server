@@ -4,6 +4,7 @@ import { createInterface } from 'node:readline';
 import { EOL } from 'node:os';
 import type { Message, Request, Response, Event } from './protocol.js';
 import { Queue } from './queue.js';
+import { Result, handlers } from './handlers.js';
 
 const writeQueue = new Queue<Buffer>();
 let canWrite = true;
@@ -54,7 +55,22 @@ function onMessage(message: string): void {
   }
 }
 
-function executeCommand(request: Request): Result {}
+function executeCommand(request: Request): Result {
+  const handler = handlers[request.command];
+  if (handler) {
+    const response = handler(request);
+    return response;
+  } else {
+    doOutput(
+      undefined,
+      'unknown',
+      request.seq,
+      false,
+      `Unrecognized JSON command: ${request.command}`,
+    );
+    return { responseRequired: false };
+  }
+}
 
 function doOutput(
   response: {} | undefined,
@@ -114,11 +130,6 @@ function writeMessageCallback() {
   if (!writeQueue.isEmpty()) {
     writeMessage(writeQueue.dequeue());
   }
-}
-
-interface Result {
-  response: {};
-  responseRequired: boolean;
 }
 
 startServer();

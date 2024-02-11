@@ -27,3 +27,35 @@ export interface Event extends Message {
   event: string;
   body: {};
 }
+
+export interface OpenRequest extends Request {
+  command: 'open';
+  arguments: {
+    file: string;
+    fileContent?: string;
+  };
+}
+
+export interface FileRequest extends Request {
+  arguments: {
+    file: string;
+  };
+}
+
+export interface NodeRequest extends Request {
+  command: 'node';
+  arguments: {
+    file: string;
+    line: number;
+    col: number;
+    kind: string;
+  };
+}
+
+export interface LocationRequest extends Request {
+  arguments: {
+    file: string;
+    line: number;
+    col: number;
+  };
+}
